@@ -37,6 +37,7 @@ cp -f /vagrant/wildfly.conf /etc/default/wildfly.conf
 rm -f /etc/init.d/keycloak
 ln -s /opt/keycloak/bin/init.d/wildfly-init-redhat.sh /etc/init.d/keycloak
 /sbin/chkconfig --add keycloak
+/sbin/chkconfig --level 345 keycloak on
 
 source /etc/default/wildfly.conf
 mkdir -p /var/log/wildfly
