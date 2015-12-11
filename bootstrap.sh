@@ -3,13 +3,13 @@
 # This script downloads and installs Keycloak.
 # Use the VERSION environment variable below to define the version to be used.
 
-VERSION=1.4.0.Final
+VERSION=1.7.0.CR1
 
 DOWNLOAD_URL=http://downloads.jboss.org/keycloak/${VERSION}/keycloak-${VERSION}.tar.gz
 
 # Install Java
-echo "Installing Java 7 JDK ..."
-yum -y -q install java-1.7.0-openjdk-devel
+# echo "Installing Java 7 JDK ..."
+# yum -y -q install java-1.7.0-openjdk-devel
 
 # Install Keycloak
 if [ -f "/vagrant/downloads/keycloak-${VERSION}.tar.gz" ];
@@ -21,7 +21,7 @@ else
     wget -q -O /vagrant/downloads/keycloak-${VERSION}.tar.gz "${DOWNLOAD_URL}"
     if [ $? != 0 ];
     then
-        echo "FATAL: Failed to download Keycloak from ${DOWNLOAD_URL}"	
+        echo "FATAL: Failed to download Keycloak from ${DOWNLOAD_URL}"
         exit 1
     fi
 
@@ -49,6 +49,6 @@ echo "Starting Keycloak ..."
 /sbin/service keycloak start
 
 echo "Opening port 8080 on iptables ..."
-iptables -I INPUT 3 -p tcp -m state --state NEW -m tcp --dport 8080 -j ACCEPT
+iptables -I INPUT -p tcp -m state --state NEW -m tcp --dport 8080 -j ACCEPT
 iptables-save > /etc/sysconfig/iptables
 
