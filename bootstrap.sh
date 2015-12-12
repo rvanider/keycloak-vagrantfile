@@ -32,7 +32,8 @@ tar xfz /vagrant/downloads/keycloak-${VERSION}.tar.gz -C /opt
 rm -f /opt/keycloak
 ln -s /opt/keycloak-${VERSION} /opt/keycloak
 
-cp -f /vagrant/wildfly.conf /etc/default/wildfly.conf
+#cp -f /vagrant/wildfly.conf /etc/default/wildfly.conf
+cp -f /vagrant/wildfly-import.conf /etc/default/wildfly.conf
 
 rm -f /etc/init.d/keycloak
 ln -s /opt/keycloak/bin/init.d/wildfly-init-redhat.sh /etc/init.d/keycloak
